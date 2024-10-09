@@ -1,0 +1,8 @@
+Peak Usage Time,Total Rides,Weather Condition,Hour
+08:00,1500,Clear,
+17:00,2000,Rainy,
+,100,Clear,1.0
+,150,Cloudy,2.0
+,200,Clear,3.0
+,250,Rainy,4.0
+,300,Cloudy,5.0
