@@ -57,3 +57,13 @@ Once all dependencies are installed and data files are provided, you can run the
 ## Conclusion
 This dashboard is a useful tool for analyzing bike sharing data and gaining deeper insights into service usage.
 
+
+
+Hasil streamlit bisa di lihat di
+
+https://dicodingacademy-yvcihklqt9odxyfvam4qrd.streamlit.app/
+
+repository github untuk proyek ini
+
+https://github.com/deni-kuswanto/dicoding_academy
+
