@@ -36,7 +36,7 @@ hour_dataframe['day'] = hour_dataframe['dteday'].dt.day_name()
 hour_dataframe['month'] = hour_dataframe['dteday'].dt.month_name()
 
 # Analisis berdasarkan hari
-plt.figure(figsize=(12, 6))
+plt.figure(figsize=(16, 6))
 sns.barplot(x='day', y='cnt', data=hour_dataframe, estimator=sum, order=['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'])
 plt.title('Jumlah Penyewaan Sepeda Berdasarkan Hari')
 plt.xlabel('Hari')
@@ -45,7 +45,7 @@ plt.xticks(rotation=45)
 st.pyplot(plt)
 
 # Analisis berdasarkan bulan
-plt.figure(figsize=(12, 6))
+plt.figure(figsize=(16, 6))
 sns.barplot(x='month', y='cnt', data=hour_dataframe, estimator=sum, order=['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'])
 plt.title('Jumlah Penyewaan Sepeda Berdasarkan Bulan')
 plt.xlabel('Bulan')
@@ -71,7 +71,7 @@ kelembaban udara (hum) yang mendukung, untuk meningkatkan penggunaan layanan sec
 hour_dataframe['dteday'] = pd.to_datetime(hour_dataframe['dteday'])
 
 # Analisis pengaruh kelembapan terhadap jumlah penyewaan
-plt.figure(figsize=(12, 6))
+plt.figure(figsize=(16, 6))
 sns.scatterplot(x='hum', y='cnt', data=hour_dataframe, alpha=0.6)
 plt.title('Pengaruh Kelembaban udara (hum) terhadap Jumlah Penyewaan Sepeda')
 plt.xlabel('Kelembaban (Normalisasi)')
