@@ -18,9 +18,14 @@ st.subheader("Pertanyaan 1")
 st.text("""
 Kesimpulan untuk pertanyaan 1 yakni Kapan waktu puncak penggunaan layanan penyewaan sepeda berdasarkan hari atau bulan?
 
-Berdasarkan analisis data dari kedua dataset, yaitu dataset harian dan dataset jam. Berdasarkan visualisasi dan analisis yang dilakukan, terlihat bahwa penggunaan layanan bike sharing cenderung meningkat pada hari tertentu dalam seminggu.
+Berdasarkan analisis data dari kedua dataset, yaitu dataset harian dan dataset jam. Berdasarkan visualisasi dan analisis
+yang dilakukan, terlihat bahwa penggunaan layanan bike sharing cenderung meningkat pada hari tertentu dalam seminggu.
 
-Pada hari-hari akhir pekan, khususnya pada hari Sabtu dan Minggu, ketika lebih banyak orang memiliki waktu luang untuk bersepeda, data menunjukkan bahwa penggunaan layanan ini juga mengalami lonjakan. Dari hasil temuan ini menunjukkan bahwa faktor waktu memiliki peran penting dalam menentukan pola penggunaan penyewaan sepeda, sehingga  untuk memenuhi permintaan pengguna secara optimal, perusahaan dapat mempertimbangkan penyesuaian jadwal operasional atau penambahan unit sepeda di waktu-waktu puncak tersebut.
+Pada hari-hari akhir pekan, khususnya pada hari Sabtu dan Minggu, ketika lebih banyak orang memiliki waktu luang untuk
+bersepeda, data menunjukkan bahwa penggunaan layanan ini juga mengalami lonjakan. Dari hasil temuan ini menunjukkan bahwa
+faktor waktu memiliki peran penting dalam menentukan pola penggunaan penyewaan sepeda, sehingga  untuk memenuhi permintaan
+pengguna secara optimal, perusahaan dapat mempertimbangkan penyesuaian jadwal operasional atau penambahan unit sepeda di
+waktu-waktu puncak tersebut.
 """)
 
 # Mengonversi kolom 'dteday' ke tipe datetime
@@ -37,7 +42,7 @@ plt.title('Jumlah Penyewaan Sepeda Berdasarkan Hari')
 plt.xlabel('Hari')
 plt.ylabel('Jumlah Penyewaan')
 plt.xticks(rotation=45)
-plt.show()
+st.pyplot(plt)
 
 # Analisis berdasarkan bulan
 plt.figure(figsize=(12, 6))
@@ -46,7 +51,7 @@ plt.title('Jumlah Penyewaan Sepeda Berdasarkan Bulan')
 plt.xlabel('Bulan')
 plt.ylabel('Jumlah Penyewaan')
 plt.xticks(rotation=45)
-plt.show()
+st.pyplot(plt)
 
 # Pertanyaan 2:
 # - Bagaimana pengaruh kelembaban udara (hum) terhadap jumlah pengguna penyewaan sepeda?
@@ -54,7 +59,12 @@ st.subheader("Pertanyaan 2")
 st.text("""
 Kesimpulan untuk pertanyaan 2 yakni Bagaimana pengaruh kelembaban udara (hum) terhadap jumlah pengguna penyewaan sepeda?
 
-Berdasarkan analisis yang dilakukan terhadap dua dataset yakni harian dan jam. Dari analisis yang menunjukkan hubungan antara kelembapan dengan jumlah pengguna penyewaan sepeda, dapat dilihat bahwa kelembapan yang tinggi mengurangi minat orang untuk menggunakan layanan penyewaan sepeda, karena kondisi tersebut mungkin dianggap tidak nyaman untuk bersepeda. Temuan ini mengindikasikan bahwa penyedia layanan penyewaan sepeda harus mempertimbangkan faktor kelembaban udara (hum) dalam strategi pemasaran dan operasional mereka, termasuk mengembangkan kampanye promosi khusus pada hari-hari dengan kelembaban udara (hum) yang mendukung, untuk meningkatkan penggunaan layanan secara keseluruhan.
+Berdasarkan analisis yang dilakukan terhadap dua dataset yakni harian dan jam. Dari analisis yang menunjukkan hubungan
+antara kelembapan dengan jumlah pengguna penyewaan sepeda, dapat dilihat bahwa kelembapan yang tinggi mengurangi minat
+orang untuk menggunakan layanan penyewaan sepeda, karena kondisi tersebut mungkin dianggap tidak nyaman untuk bersepeda.
+Temuan ini mengindikasikan bahwa penyedia layanan penyewaan sepeda harus mempertimbangkan faktor kelembaban udara (hum)
+dalam strategi pemasaran dan operasional mereka, termasuk mengembangkan kampanye promosi khusus pada hari-hari dengan
+kelembaban udara (hum) yang mendukung, untuk meningkatkan penggunaan layanan secara keseluruhan.
 """)
 
 # Mengonversi kolom 'dteday' ke tipe datetime
@@ -67,4 +77,4 @@ plt.title('Pengaruh Kelembaban udara (hum) terhadap Jumlah Penyewaan Sepeda')
 plt.xlabel('Kelembaban (Normalisasi)')
 plt.ylabel('Jumlah Penyewaan')
 plt.grid()
-plt.show()
+st.pyplot(plt)
