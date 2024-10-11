@@ -15,7 +15,7 @@ st.header("Dashboard Bike Sharing Analysis")
 # - Kapan waktu puncak penggunaan layanan penyewaan sepeda berdasarkan hari atau bulan?
 
 st.subheader("Pertanyaan 1")
-st.text("""
+st.markdown("""
 Kesimpulan untuk pertanyaan 1 yakni Kapan waktu puncak penggunaan layanan penyewaan sepeda berdasarkan hari atau bulan?
 
 Berdasarkan analisis data dari kedua dataset, yaitu dataset harian dan dataset jam. Berdasarkan visualisasi dan analisis
@@ -56,7 +56,7 @@ st.pyplot(plt)
 # Pertanyaan 2:
 # - Bagaimana pengaruh kelembaban udara (hum) terhadap jumlah pengguna penyewaan sepeda?
 st.subheader("Pertanyaan 2")
-st.text("""
+st.markdown("""
 Kesimpulan untuk pertanyaan 2 yakni Bagaimana pengaruh kelembaban udara (hum) terhadap jumlah pengguna penyewaan sepeda?
 
 Berdasarkan analisis yang dilakukan terhadap dua dataset yakni harian dan jam. Dari analisis yang menunjukkan hubungan
@@ -78,8 +78,3 @@ plt.xlabel('Kelembaban (Normalisasi)')
 plt.ylabel('Jumlah Penyewaan')
 plt.grid()
 st.pyplot(plt)
-
-
-st.markdown("**Ini adalah teks tebal dalam Markdown**")
-
-st.caption("Ini adalah caption atau keterangan")
