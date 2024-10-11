@@ -78,3 +78,8 @@ plt.xlabel('Kelembaban (Normalisasi)')
 plt.ylabel('Jumlah Penyewaan')
 plt.grid()
 st.pyplot(plt)
+
+
+st.markdown("**Ini adalah teks tebal dalam Markdown**")
+
+st.caption("Ini adalah caption atau keterangan")
