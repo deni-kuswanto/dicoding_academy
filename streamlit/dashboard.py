@@ -7,43 +7,64 @@ import streamlit as st
 sns.set(style='dark')
 
 # Membaca data dari CSV
-all_df = pd.read_csv("./streamlit/all_data.csv")
+hour_dataframe = pd.read_csv("./streamlit/hour.csv")
 
-# Menampilkan nama kolom
-print("Nama kolom dalam DataFrame:", all_df.columns)
+st.header("Dashboard Bike Sharing Analysis")
 
-# Mengisi nilai kosong di kolom 'Peak Usage Time' dan 'Hour'
-all_df['Peak Usage Time'].fillna(method='ffill', inplace=True)
-all_df['Hour'].fillna(method='ffill', inplace=True)
+#Pertanyaan 1:
+# - Kapan waktu puncak penggunaan layanan penyewaan sepeda berdasarkan hari atau bulan?
 
-# Mengonversi 'Peak Usage Time' ke tipe datetime
-all_df['Peak Usage Time'] = pd.to_datetime(all_df['Peak Usage Time'], format='%H:%M', errors='coerce')
+st.subheader("Pertanyaan 1")
+st.text("""
+Kesimpulan untuk pertanyaan 1 yakni Kapan waktu puncak penggunaan layanan penyewaan sepeda berdasarkan hari atau bulan?
 
-# Mengurutkan berdasarkan waktu
-all_df.sort_values(by='Peak Usage Time', inplace=True)
+Berdasarkan analisis data dari kedua dataset, yaitu dataset harian dan dataset jam. Berdasarkan visualisasi dan analisis yang dilakukan, terlihat bahwa penggunaan layanan bike sharing cenderung meningkat pada hari tertentu dalam seminggu.
 
-# Menentukan informasi analisis
-total_rides = all_df['Total Rides'].sum()
+Pada hari-hari akhir pekan, khususnya pada hari Sabtu dan Minggu, ketika lebih banyak orang memiliki waktu luang untuk bersepeda, data menunjukkan bahwa penggunaan layanan ini juga mengalami lonjakan. Dari hasil temuan ini menunjukkan bahwa faktor waktu memiliki peran penting dalam menentukan pola penggunaan penyewaan sepeda, sehingga  untuk memenuhi permintaan pengguna secara optimal, perusahaan dapat mempertimbangkan penyesuaian jadwal operasional atau penambahan unit sepeda di waktu-waktu puncak tersebut.
+""")
 
-# Menampilkan dashboard
-st.header('Dashboard Bike Sharing Analysis')
+# Mengonversi kolom 'dteday' ke tipe datetime
+hour_dataframe['dteday'] = pd.to_datetime(hour_dataframe['dteday'])
 
-st.subheader('Total Rides')
-st.metric("Total Rides", value=total_rides)
+# Menambahkan kolom untuk hari dan bulan
+hour_dataframe['day'] = hour_dataframe['dteday'].dt.day_name()
+hour_dataframe['month'] = hour_dataframe['dteday'].dt.month_name()
 
-# Visualisasi jumlah total rides per jam
+# Analisis berdasarkan hari
 plt.figure(figsize=(12, 6))
-sns.barplot(x='Hour', y='Total Rides', data=all_df, palette='viridis')
-plt.title('Total Rides per Hour')
-plt.xlabel('Hour of the Day')
-plt.ylabel('Total Rides')
+sns.barplot(x='day', y='cnt', data=hour_dataframe, estimator=sum, order=['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'])
+plt.title('Jumlah Penyewaan Sepeda Berdasarkan Hari')
+plt.xlabel('Hari')
+plt.ylabel('Jumlah Penyewaan')
 plt.xticks(rotation=45)
-st.pyplot(plt)
+plt.show()
 
-# Visualisasi berdasarkan kondisi cuaca
+# Analisis berdasarkan bulan
 plt.figure(figsize=(12, 6))
-sns.countplot(data=all_df, x='Weather Condition', palette='coolwarm')
-plt.title('Total Rides by Weather Condition')
-plt.xlabel('Weather Condition')
-plt.ylabel('Total Rides')
-st.pyplot(plt)
+sns.barplot(x='month', y='cnt', data=hour_dataframe, estimator=sum, order=['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'])
+plt.title('Jumlah Penyewaan Sepeda Berdasarkan Bulan')
+plt.xlabel('Bulan')
+plt.ylabel('Jumlah Penyewaan')
+plt.xticks(rotation=45)
+plt.show()
+
+# Pertanyaan 2:
+# - Bagaimana pengaruh kelembaban udara (hum) terhadap jumlah pengguna penyewaan sepeda?
+st.subheader("Pertanyaan 2")
+st.text("""
+Kesimpulan untuk pertanyaan 2 yakni Bagaimana pengaruh kelembaban udara (hum) terhadap jumlah pengguna penyewaan sepeda?
+
+Berdasarkan analisis yang dilakukan terhadap dua dataset yakni harian dan jam. Dari analisis yang menunjukkan hubungan antara kelembapan dengan jumlah pengguna penyewaan sepeda, dapat dilihat bahwa kelembapan yang tinggi mengurangi minat orang untuk menggunakan layanan penyewaan sepeda, karena kondisi tersebut mungkin dianggap tidak nyaman untuk bersepeda. Temuan ini mengindikasikan bahwa penyedia layanan penyewaan sepeda harus mempertimbangkan faktor kelembaban udara (hum) dalam strategi pemasaran dan operasional mereka, termasuk mengembangkan kampanye promosi khusus pada hari-hari dengan kelembaban udara (hum) yang mendukung, untuk meningkatkan penggunaan layanan secara keseluruhan.
+""")
+
+# Mengonversi kolom 'dteday' ke tipe datetime
+hour_dataframe['dteday'] = pd.to_datetime(hour_dataframe['dteday'])
+
+# Analisis pengaruh kelembapan terhadap jumlah penyewaan
+plt.figure(figsize=(12, 6))
+sns.scatterplot(x='hum', y='cnt', data=hour_dataframe, alpha=0.6)
+plt.title('Pengaruh Kelembaban udara (hum) terhadap Jumlah Penyewaan Sepeda')
+plt.xlabel('Kelembaban (Normalisasi)')
+plt.ylabel('Jumlah Penyewaan')
+plt.grid()
+plt.show()
